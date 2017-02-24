@@ -1,7 +1,9 @@
 package client.ribbon;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +18,7 @@ import javax.annotation.Resource;
  * @since 24/02/2017
  */
 @EnableDiscoveryClient
+@EnableCircuitBreaker
 @SpringBootApplication
 @RestController
 public class Application {
@@ -29,9 +32,14 @@ public class Application {
     @Resource
     private RestTemplate restTemplate;
 
+    @HystrixCommand(fallbackMethod = "fallback")
     @RequestMapping("/test-add")
     public String testAdd() {
         return restTemplate.getForEntity("http://COMPUTE-SERVICE/add?a=10&b=20", String.class).getBody();
+    }
+
+    public String fallback() {
+        return "ERROR by CircuitBreaker >______,.<";
     }
 
     public static void main(String[] args) {

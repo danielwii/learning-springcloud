@@ -5,20 +5,30 @@ Learning Spring-Cloud
 
 - Eureka Server 服务注册中心
 
-        spring-cloud-starter-eureka-server
+
+    spring-cloud-starter-eureka-server
 
 - Eureka Client 服务提供者
 
-        spring-cloud-starter-eureka
+
+    spring-cloud-starter-eureka
 
 - Ribbon (Client Side Load Balancer) 负载均衡器
 
-        spring-cloud-starter-ribbon
+
+    spring-cloud-starter-ribbon
   
-- Feign (Declarative REST Client) include Ribbon
+- Feign (Declarative REST Client)
+    - include Ribbon
+    - include Hystrix
 
-        spring-cloud-starter-feign
 
+    spring-cloud-starter-feign
+
+- Circuit Breaker: Hystrix Clients 断路器
+
+
+    spring-cloud-starter-hystrix
 
 ### Test
 
