@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native # load config from src/main/resources
+                   # or spring.cloud.config.server.native.searchLocations=file:/Users/...
+
+server:
+  port: 3900

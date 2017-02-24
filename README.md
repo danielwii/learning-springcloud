@@ -32,6 +32,14 @@ Learning Spring-Cloud
 
 ### Test
 
+| Name | Port | Service |
+| ------| ------ | ----- |
+| cloud-registry | 8761 | 
+| cloud-config | 3900 | config-server |
+| cloud-service-provider | 3000 |
+| client-ribbon | 3100 | ribbon-consumer |
+| client-feign | 3200 | feign-consumer |
+
     - ribbon
     http localhost:3000/test-add
     - feign
