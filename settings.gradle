@@ -1,3 +1,6 @@
 rootProject.name = 'learning-springcloud'
 include 'cloud-registry'
 include 'cloud-service-provider'
+include 'client-ribbon'
+include 'client-feign'
+
