@@ -1,0 +1,69 @@
+buildscript {
+    ext {
+        springBootVersion = "1.5.1.RELEASE"
+        dependencyManagementVersion = "1.0.0.RC2"
+        propdepsVerision = "0.0.7"
+    }
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        maven { url "http://repo.spring.io/plugins-release" }
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "org.springframework.build.gradle:propdeps-plugin:${propdepsVerision}"
+        classpath "com.github.ben-manes:gradle-versions-plugin:0.14.0"
+    }
+}
+
+allprojects {
+    group 'com.github.danielwii'
+    version '1.0-SNAPSHOT'
+}
+
+subprojects {
+    repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        maven { url "http://clojars.org/repo" }
+        mavenCentral()
+    }
+
+    apply plugin: "java"
+    apply plugin: "idea"
+    apply plugin: "com.github.ben-manes.versions"
+    apply plugin: "org.springframework.boot"
+    apply plugin: "propdeps"
+    apply plugin: "propdeps-idea"
+    apply plugin: "io.spring.dependency-management"
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-starter-parent:1.5.1.RELEASE"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR5"
+        }
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok:1.16.14"
+
+        testCompile "org.springframework.boot:spring-boot-starter-test"
+        testCompile "org.springframework.restdocs:spring-restdocs-mockmvc"
+        testCompile "org.codehaus.groovy:groovy-all:2.4.8"
+        // https://mvnrepository.com/artifact/org.spockframework/spock-core
+        testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-3"
+        // https://mvnrepository.com/artifact/org.spockframework/spock-spring
+        testCompile "org.spockframework:spock-spring:1.1-groovy-2.4-rc-3"
+
+        // propdeps
+        optional "org.springframework.boot:spring-boot-configuration-processor"
+    }
+
+    compileJava.dependsOn(processResources)
+}
