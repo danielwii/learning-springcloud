@@ -25,10 +25,23 @@ Learning Spring-Cloud
 
     spring-cloud-starter-feign
 
-- Circuit Breaker: Hystrix Clients 断路器
+- Hystrix: (Circuit Breaker) 断路器
 
 
     spring-cloud-starter-hystrix
+
+- Zuul: (Api Gateway) 服务网关
+
+
+    spring-cloud-starter-zuul
+
+### Annotations
+
+- @SpringCloudApplication
+    - @SpringBootApplication
+    - @EnableDiscoveryClient
+    - @EnableCircuitBreaker
+- @EnableZuulProxy *spring-cloud-starter-zuul*
 
 ### Test
 
@@ -36,6 +49,7 @@ Learning Spring-Cloud
 | ---                    | ---  | ---             |
 | cloud-registry         | 8761 |                 |
 | cloud-config           | 3900 | config-server   |
+| cloud-gateway          | 8900 | api-gateway     |
 | cloud-service-provider | 3000 |                 |
 | client-ribbon          | 3100 | ribbon-consumer |
 | client-feign           | 3200 | feign-consumer  |

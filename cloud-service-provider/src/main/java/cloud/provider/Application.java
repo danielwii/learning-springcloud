@@ -16,10 +16,10 @@ import javax.annotation.Resource;
  * @author daniel
  * @since 24/02/2017
  */
+@Slf4j
 @EnableDiscoveryClient
 @SpringBootApplication
 @RestController
-@Slf4j
 public class Application {
 
     @Resource
@@ -28,7 +28,7 @@ public class Application {
     @RequestMapping("/add")
     public Integer add(@RequestParam Integer a, @RequestParam Integer b) {
         ServiceInstance _instance = client.getLocalServiceInstance();
-        Integer _result = a + b;
+        Integer         _result   = a + b;
         log.info("/add, host: {}, service_id: {}, result: ", _instance.getHost(), _instance.getServiceId(), _result);
         return _result;
     }

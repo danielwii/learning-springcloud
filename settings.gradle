@@ -4,4 +4,5 @@ include 'cloud-service-provider'
 include 'client-ribbon'
 include 'client-feign'
 include 'cloud-config'
+include 'cloud-gateway'
 
